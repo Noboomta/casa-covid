@@ -1,0 +1,22 @@
+{
+  "name": "casa-covid",
+  "version": "1.0.0",
+  "description": "will be updated soon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Noboomta/casa-covid.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Noboomta/casa-covid/issues"
+  },
+  "homepage": "https://github.com/Noboomta/casa-covid#readme",
+  "dependencies": {
+    "require": "^2.4.20"
+  }
+}

@@ -6,23 +6,70 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="https://api.longdo.com/map/?key=a18ea1e3fa5aacd889ae1028d3709545"></script>
 	<script type="text/javascript" src="./init_map.js"></script>
-	<style type="text/css">
-		html {
-			height: 100%;
-		}
-
-		body {
-			margin: 0px;
-			height: 100%;
-		}
-
-		#map {
-			height: 100%;
-		}
-	</style>
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./form.css">
+	<link rel="stylesheet" href="./tooltip.css">
+	<script data-main="./init_map.js" src="scripts/require.js"></script>
+	<!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> -->
 	<title>Covid casa map</title>
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "500px";
+		}
+
+	    function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+	    }
+	</script>
 </head>
 <body onload="init();">
-	<div id="map"></div>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<form class="form" onsubmit="getNewHouse()">
+			<div class="title">สวัสดีครับ</div>
+			<div class="subtitle">เพิ่มตำแหน่งบ้านของคุณ</div>
+			<div class="input-container ic1">
+			  <input id="address" class="input" type="text" required placeholder=" " />
+			  <div class="cut"></div>
+			  <label for="address" class="placeholder">address/บ้านเลขที่</label>
+			</div>
+			<div class="input-container ic2">
+			  <input id="linename" class="input" type="text" required placeholder=" " />
+			  <div class="cut"></div>
+			  <label for="linename" class="placeholder">linename/ชื่อในไลน์</label>
+			</div>
+			<div class="input-container ic2">
+				<select class="input" name="status" id="status">
+					<option class="select"value="none" disabled selected hidden>เลือกสถานะ</option>
+					<option class="input" value="none">healthy/ปกติ</option>
+					<option class="input" value="infected">infected/มีคนป่วย</option>
+					<option class="input" value="quarantine">quarantine/กักตัว</option>
+				</select>
+			</div>
+			<div class="input-container ic2 tooltip">
+				<input id="lat" class="input tooltip" type="text" placeholder=" " required disabled/>
+				<span class="tooltiptext">เพิ่มปุ่มลากก่อนแล้วลากไปตำแหน่งบ้านครับ</span>
+				<div class="cut cut-short"></div>
+				<label for="lat" class="placeholder">Latitude</>
+			</div>
+			<div class="input-container ic2 tooltip">
+				<input id="lon" class="input" type="text" placeholder=" " required disabled/>
+				<span class="tooltiptext">เพิ่มปุ่มลากก่อนแล้วลากไปตำแหน่งบ้านครับ</span>
+				<div class="cut cut-short"></div>
+				<label for="lon" class="placeholder">Longitude</>
+			</div>
+			<button type="submit" class="submit">submit</button>
+		</form>>
+	</div>
+	<div class="navbar">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+		<span style="font-size:30px;">Casa Covid</span>
+		<button class="cool-button" onclick="addDrag()">เพิ่มปุ่มลาก</button>
+		<button class="cool-button" onclick="logDragPin()">log drag pin</button>
+	</div>
+	<div class="mapbog" onclick="logDragPin()">
+		<div id="map"></div>
+	</div>
 </body>
 </html>
