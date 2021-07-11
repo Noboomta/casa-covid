@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Create Map Sample | Longdo Map</title>
+	<style type="text/css">
+		html {
+			height: 100%;
+		}
+
+		body {
+			margin: 0px;
+			height: 100%;
+		}
+
+		#map {
+			height: 100%;
+		}
+	</style>
+	<script type="text/javascript" src="https://api.longdo.com/map/?key=a18ea1e3fa5aacd889ae1028d3709545"></script>
+	<script>
+		function checkDistance(displacementResult){
+			console.log(displacementResult)
+			return (displacementResult/1000).toFixed(2);
+		}
+
+		function init() {
+			map = new longdo.Map({
+				placeholder: document.getElementById('map'),
+			});
+			map.location(longdo.LocationMode.Geolocation);
+			const circleCenter = { lat: 13.671502, lon: 100.712039 }
+
+			const radiusInMetre = 1000 // 2500m or 2.5km
+			const metrePerLatInDegree = window.longdo.Util.latitudeLength(circleCenter.lat)
+			const radiusInDegree = (radiusInMetre * 1.0) / metrePerLatInDegree
+
+			map.Overlays.add(new longdo.Circle(circleCenter, radiusInDegree, {
+				title: 'รัศมี 5 กิโลเมตร จากซอยกิ่งแก้ว',
+				label: '5 km.',
+				detail: 'ไม่อนุญาตให้เข้าพื้นที่',
+				lineWidth: 1,
+				lineColor: 'rgba(255, 0, 0, 0.8)',
+				fillColor: 'rgba(255, 0, 0, 0.4)',
+				pivot: { lat: 13.671168, lon: 100.714828 }
+			}));
+
+			map.Overlays.add(new longdo.Marker(circleCenter, {
+				title: 'เพลิงไหม้โรงงาน ซอยกิ่งแก้ว 21',
+				icon: {
+					html: '<img class="logo-fire" src="./fire-2x.png">',
+					offset: { x: 14, y: 14 }
+				},
+				detail: 'กรณีเหตุเพลิงไหม้โรงงานผลิตสารเคมีภายในซอยกิ่งแก้ว 21 อ.บางพลี จ.สมุทรปราการ',
+			}));
+
+			map.Event.bind('geolocation', function (position) {
+			let displacementResult = longdo.Util.distance([
+				 circleCenter,
+				 { lat: position.coords.latitude, lon: position.coords.longitude }  //marker object
+			]);
+			let locationList = []
+			locationList.push(circleCenter)
+			locationList.push({ lat: position.coords.latitude, lon: position.coords.longitude })
+
+			let boundingBox = longdo.Util.locationBound(locationList);
+			map.bound(boundingBox);
+
+			if (displacementResult < 5000) {
+				 alert('คุณอยู่ในพื้นที่รัศมี 5 กิโลเมตร​จากจุดเกิดเหตุ ' + checkDistance(displacementResult) + ' km.')
+			} else {
+				 alert('คุณอยู่ห่างจากจุดเกิดเหตุ ' + checkDistance(displacementResult) + ' km.')
+			 }
+	        });
+		}
+	</script>
+</head>
+
+<body onload="init();">
+	<div id="map"></div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{
+	"infected_houses": [],
+	"house": [
+		{
+			"address": "1128/1",
+			"status": "normal",
+			"location": {
+				"lat": 13.992393242214956,
+				"lon": 100.65724329999728
+			},
+			"contact": {
+				"line": "line-name",
+				"tel": 12345678
+			}
+		},
+		{
+			"address": "1128/18",
+			"status": "normal",
+			"location": {
+				"lat": 13.992393242214956,
+				"lon": 100.65724329999728
+			},
+			"contact": {
+				"line": "boom 18 ซ4",
+				"tel": 12345678
+			}
+		}
+	],
+	"public_services": [
+		{
+			"name": "clubhouse",
+			"detail": "casa-clubhouse",
+			"lat": 13.987699,
+			"lon": 100.657391
+		},
+		{
+			"name": "guardhouse",
+			"detail": "front-guardhouse",
+			"lat": 13.992663,
+			"lon": 100.657400
+		},
+		{
+			"name": "guardhouse",
+			"detail": "garden1-guardhouse",
+			"lat": 13.984765,
+			"lon": 100.656722
+		}
+	]
+}
